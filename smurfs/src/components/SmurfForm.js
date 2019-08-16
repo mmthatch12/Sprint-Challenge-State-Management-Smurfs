@@ -1,68 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Form, Field, withFormik } from 'formik'
 import axios from 'axios'
 
+import { postSmurf } from './actions/actions'
 
 
-const SmurfForm = () => {
-    // const[newSmurf, setNewSmurf] = useState({ name: '', age: 0, height: '' })
+const SmurfForm = props => {
+    const[newSmurf, setNewSmurf] = useState({ name: '', age: '', height: '' })
     
-    // const handleChange = event => {
-    //     event.preventDefault();
-    //     setNewSmurf({
-    //         ...newSmurf, [event.target.name]: event.target.value
-    //     })
-    // }
+    const handleChange = event => {
+        setNewSmurf({
+            ...newSmurf, [event.target.name]: event.target.value
+        })
+    }
 
-    // const addSmurf = event => {
-    //     event.preventDefault()
-    //     console.log("newsmurf", newSmurf)
-    //     props.postSmurf(newSmurf)
-    //     setNewSmurf({ name: '', age: 0, height: ''})
-    // }
+    const addSmurf = event => {
+        event.preventDefault()
+        console.log("newsmurf", newSmurf)
+        props.postSmurf(newSmurf)
+        setNewSmurf({})
+    }
     
 
     return (
         <div>
-            <Form>
+            {/* <Form>
                 <Field type='text' name='name' placeholder='Smurf Name' />
                 <Field type='number' name='age' placeholder='Smurf Age' />
                 <Field type='text' name='height' placeholder='Smurf Height' />
                 <button type='submit'>Add Smurf!</button>
-            </Form>
-            {/* <form onSubmit={addSmurf}>
-                <input type="text" value={newSmurf.name} name='name' onChange={handleChange} placeholder='Smurf Name'  />
-                <input type="number" value={newSmurf.age} name='age' onChange={handleChange} placeholder='Smurf Age' />
-                <input type="text" value={newSmurf.height} name='height' onChange={handleChange} placeholder='Smurf Height'  />
+            </Form> */}
+            <form onSubmit={addSmurf}>
+                <input type="text" name='name' onChange={event => handleChange(event)} placeholder='Smurf Name'  />
+                <input type="text" name='age' onChange={event => handleChange(event)} placeholder='Smurf Age' />
+                <input type="text" name='height' onChange={event => handleChange(event)} placeholder='Smurf Height'  />
+            
+                <button >Add Smurf</button>
             </form>
-            <button onClick={props.postSmurf}>Add Smurf</button> */}
+            
         </div>
     )
 }
 
-const FormicSmurfForm = withFormik({
-    mapPropsToValues({ name, age, height }) {
-        return {
-            name: name || '',
-            age: age || 0,
-            height: height || ''
-        }
-    },
+// const FormicSmurfForm = withFormik({
+//     mapPropsToValues({ name, age, height }) {
+//         return {
+//             name: name || '',
+//             age: age || 0,
+//             height: height || ''
+//         }
+//     },
 
-    handleSubmit(values, { resetForm, setStatus }) {
-        axios.post('http://localhost:3333/smurfs', values)
-            .then(res => {
-                console.log('post request', res.data)
-                setStatus(res.data)
-                resetForm()
-            })
-            .catch(err => {
-                console.log(err.response)
-            })
-    },
+//     handleSubmit(values, { resetForm, setStatus }) {
+//         axios.post('http://localhost:3333/smurfs', values)
+//             .then(res => {
+//                 console.log('post request', res.data)
+//                 setStatus(res.data)
+//                 resetForm()
+//             })
+//             .catch(err => {
+//                 console.log(err.response)
+//             })
+//     },
 
-})(SmurfForm)
+// })(SmurfForm)
 
-export default FormicSmurfForm
+const mapStateToProps = state => {
+    return {
+        error: state.error
+    }
+}
+
+export default connect(mapStateToProps, { postSmurf })(SmurfForm)
 

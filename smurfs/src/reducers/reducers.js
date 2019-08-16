@@ -1,8 +1,8 @@
 import {
     GET_SMURF_DATA_SUCCESS,
     GET_SMURF_DATA_FAILURE,
-    // POST_SMURF_FAILURE,
-    // POST_SMURF_SUCCESS
+    POST_SMURF_FAILURE,
+    POST_SMURF_SUCCESS
 } from '../components/actions/actions'
 
 const initialState = {
@@ -25,17 +25,17 @@ export const reducer = (state = initialState, action) => {
                 error: action.payload,
                 smurfs: null
             }
-        // case POST_SMURF_SUCCESS:
-        //     return {
-        //         ...state,
-        //         smurfs: action.payload,
-        //         error: null
-        //     }
-        // case POST_SMURF_FAILURE:
-        //     return {
-        //         ...state,
-        //         error: action.payload
-        //     }        
+        case POST_SMURF_SUCCESS:
+            return {
+                ...state,
+                smurfs: action.payload,
+                error: null
+            }
+        case POST_SMURF_FAILURE:
+            return {
+                ...state,
+                error: action.payload
+            }        
             default:
                 return state;
     }
