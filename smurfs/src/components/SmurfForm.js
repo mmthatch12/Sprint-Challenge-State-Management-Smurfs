@@ -44,10 +44,25 @@ const SmurfForm = () => {
 const FormicSmurfForm = withFormik({
     mapPropsToValues({ name, age, height }) {
         return {
-
+            name: name || '',
+            age: age || 0,
+            height: height || ''
         }
-    }
-})
+    },
 
-export default SmurfForm
+    handleSubmit(values, { resetForm, setStatus }) {
+        axios.post('http://localhost:3333/smurfs', values)
+            .then(res => {
+                console.log('post request', res.data)
+                setStatus(res.data)
+                resetForm()
+            })
+            .catch(err => {
+                console.log(err.response)
+            })
+    },
+
+})(SmurfForm)
+
+export default FormicSmurfForm
 
