@@ -6,7 +6,9 @@ import Smurf from './Smurf'
 const SmurfList = props => {
     return (
         <div>
-            <Smurf /> 
+            <button>Get Smurfs</button>
+            {props.smurfs &&
+            props.cards.map(smurf => <Smurf key={smurf.id} smurfData={smurf} />)} 
         </div>
     )
 }
