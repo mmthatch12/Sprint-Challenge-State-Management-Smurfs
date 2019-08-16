@@ -19,7 +19,7 @@ export const getSmurfs = () => {
 export const postSmurf = values => {
     return dispatch => {
         axios
-            .post('http://localhost:3333', values)
+            .post('http://localhost:3333/smurfs', values)
             .then(res => {
                 console.log('post request', res.data)
             })
