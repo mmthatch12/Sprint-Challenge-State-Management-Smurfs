@@ -26,8 +26,10 @@ const SmurfForm = props => {
                 <input type="number" placeholder='Smurf Age' />
                 <input type="text" placeholder='Smurf Height'  />
             </form>
-            <button onClick={props.postSmurf}>Add Smurf</button>
+            <button onClick={postSmurf}>Add Smurf</button>
         </div>
     )
 }
+
+export default SmurfForm
 
