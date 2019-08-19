@@ -23,10 +23,24 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+  I allows the developer not to have to prop drill. In a chain of parent child components, state can be passed from the parent to the greatgrandchild without having to pass props through every component inbetween.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+  The store is where all of the state data is held, the reducers allows the state to be changed in a predictable manner, actions are events that are sent to the reducer to determin if a rerender needs to occur. The store is known as the single source of truth because it hold all of the state for the app.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+  Application state is state managed at the top level, component state is managed at the component level. If the app is very large it would probably be best to use application state.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+  Redux thunk is a middleWare that allows axios calls to be used, and functions to be passed as actions. It changes the action creators because a function needs to be run on the action creators.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+  Context has been my favorite because it has been the most simple.
 
 ## Project Set Up
 
